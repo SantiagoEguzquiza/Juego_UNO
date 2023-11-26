@@ -74,6 +74,14 @@ public class Game {
 
     }
 
+    public void instanciaCPU() {
+
+        logicaCPU logica = new logicaCPU(getPlayerHand(getCurrentPlayer()), this, juegoCpu);
+
+        logica.cpuJuegaCarta(getTopCard().getColor()); // obtiene el color de la carta del descarte, habria que modificarlo para cuando agreguemos las especiales
+
+    }
+
     public void start(Game game) {
 
         UnoCard card = deck.drawCard();
@@ -152,14 +160,6 @@ public class Game {
         }
 
         stockpile.add(card);
-    }
-
-    public UnoCard getTopCard() {
-        return new UnoCard(validColor, validValue);
-    }
-
-    public ImageIcon getTopCardImage() {
-        return new ImageIcon(validColor + "_" + validValue + ".png");
     }
 
     public boolean isGameOver() {
@@ -351,13 +351,12 @@ public class Game {
 
                         juegoCpu.setPidName(getJugador());
                         juegoCpu.setButtonIcons();
-                        
+
                         System.out.println("valid color: " + validColor);
                         System.out.println("valid value: " + validValue);
 
                         topCardButton.setIcon(new javax.swing.ImageIcon("src\\main\\resources\\cards\\" + getTopCardImage()));
                         juegoCpu.revalidate();
-                        
 
                         System.out.println("el color elegido es " + validColor);
 
@@ -444,6 +443,14 @@ public class Game {
                 currentPlayer = playerIds.length - 1;
             }
         }
+    }
+
+    public UnoCard getTopCard() {
+        return new UnoCard(validColor, validValue);
+    }
+
+    public ImageIcon getTopCardImage() {
+        return new ImageIcon(validColor + "_" + validValue + ".png");
     }
 
     public int getCplayer() {

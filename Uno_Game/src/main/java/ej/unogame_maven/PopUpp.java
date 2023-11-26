@@ -168,6 +168,8 @@ public class PopUpp extends javax.swing.JFrame {
        
         if (declaredColor != null) {
             try {
+                
+                
                 game.submitPlayerCard(game.getCurrentPlayer(), playerHand.get(choice), declaredColor);
                 this.revalidate();
                 juegoCPU.setPidName(game.getCurrentPlayer());
@@ -175,8 +177,9 @@ public class PopUpp extends javax.swing.JFrame {
                 topCardButton.setIcon(new javax.swing.ImageIcon("src\\main\\resources\\cards\\" + game.getTopCardImage()));
                 this.setVisible(false);
 
-                logicaCPU logicaCPU = new logicaCPU(game.getPlayerHand(game.jugadores.get(1)), this.game, this.juegoCPU);
-                logicaCPU.cpuJuegaCarta(declaredColor);
+                
+                //despues de la jugada de un jugador, se llama a instanciaCPU() que lo que hace es decidir la carta de la cpu
+                game.instanciaCPU();
 
             } catch (InvalidColorSubmissionExcpetion | InvalidValueSubmissionException | InvalidPlayerTurnException ex) {
                 Logger.getLogger(PopUpp.class.getName()).log(Level.SEVERE, null, ex);
