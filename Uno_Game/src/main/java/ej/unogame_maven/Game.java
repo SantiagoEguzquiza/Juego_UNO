@@ -3,8 +3,10 @@ package ej.unogame_maven;
 import java.awt.Font;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.HashSet;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -22,7 +24,7 @@ public class Game {
 
     private UnoDeck deck;
     private ArrayList<ArrayList<UnoCard>> playerHand;
-    private ArrayList<UnoCard> cpuHand;
+
     private ArrayList<UnoCard> stockpile;
 
     private UnoCard.Color validColor;
@@ -74,11 +76,19 @@ public class Game {
 
     }
 
+    private final ScheduledExecutorService executor = Executors.newSingleThreadScheduledExecutor();
+
     public void instanciaCPU() {
 
-        logicaCPU logica = new logicaCPU(getPlayerHand(getCurrentPlayer()), this, juegoCpu);
+        executor.schedule(this::ejecutarLogicaCPU, 2, TimeUnit.SECONDS);
 
-        logica.cpuJuegaCarta(getTopCard().getColor()); // obtiene el color de la carta del descarte, habria que modificarlo para cuando agreguemos las especiales
+    }
+
+    private void ejecutarLogicaCPU() {
+        logicaCPU logica = new logicaCPU(getPlayerHand(getCurrentPlayer()), this, juegoCpu);
+        logica.cpuJuegaCarta(getTopCard().getColor());
+
+        ArrayList<UnoCard> a = this.getPlayerHand("CPU");
 
     }
 
@@ -182,6 +192,19 @@ public class Game {
 
         getPlayerHand(pId).add(deck.drawCard());
 
+        String a = this.getCurrentPlayer();
+
+        //Actualiza la interfaz solo si el jugador que roba una carta es un jugador real, y no la cpu
+        if (this.getCurrentPlayer() != "CPU") {
+
+            juegoCpu.setPidName(getCurrentPlayer());
+            juegoCpu.setButtonIcons();
+            juegoCpu.revalidate();
+
+        } else {
+            juegoCpu.habilitadorDeButtons(true);
+        }
+
         if (gameDirection == false) {
             currentPlayer = (currentPlayer + 1) % playerIds.length;
         } else if (gameDirection == true) {
@@ -190,6 +213,7 @@ public class Game {
                 currentPlayer = playerIds.length - 1;
             }
         }
+
     }
 
     public void setCardColor(UnoCard.Color color) {
@@ -222,6 +246,11 @@ public class Game {
             }
         }
         pHand.remove(card);
+
+        juegoCpu.setPidName(getCurrentPlayer());
+        juegoCpu.setButtonIcons();
+        juegoCpu.habilitadorDeButtons(false);
+        juegoCpu.revalidate();
 
         if (hasEmptyHand(this.playerIds[currentPlayer])) {
             JLabel message2 = new JLabel(this.playerIds[currentPlayer] + " gano la partida!");
@@ -300,6 +329,7 @@ public class Game {
             } else if (gameDirection == false) {
                 currentPlayer = (currentPlayer + 2) % playerIds.length;
             }
+
         }
     }
 
@@ -308,7 +338,7 @@ public class Game {
         {
             System.out.println("");
             System.out.println("*********************");
-            System.out.println("submitCpuCard.Game");
+            System.out.println("Game.submitCpuCard()");
             System.out.println("entra con color " + declaredColor);
             System.out.println("");
 
@@ -360,11 +390,55 @@ public class Game {
 
                         System.out.println("el color elegido es " + validColor);
 
+                        if (card.getValue() == UnoCard.Value.Wild_Four) {
+                            var pid = playerIds[currentPlayer];
+                            getPlayerHand(pid).add(deck.drawCard());
+                            getPlayerHand(pid).add(deck.drawCard());
+                            getPlayerHand(pid).add(deck.drawCard());
+                            getPlayerHand(pid).add(deck.drawCard());
+                            JLabel message = new JLabel(pid + " recoge 4 cartas");
+                            message.setFont(new Font("Arial", Font.BOLD, 48));
+                            JOptionPane.showMessageDialog(null, message);
+                        }
+
+                        break;
+
+                    } else {
+                        
+                        //Si solo le quedan cartas del color Wild, elige el color rojo como predeterminado y continua con la logica
+                        // hay que arreglarlo para no duplicar el codigo del WildFour
+
+                        declaredColor = UnoCard.Color.Red;
+                        validColor = declaredColor;
+
+                        juegoCpu.setPidName(getJugador());
+                        juegoCpu.setButtonIcons();
+
+                        System.out.println("valid color: " + validColor);
+                        System.out.println("valid value: " + validValue);
+
+                        topCardButton.setIcon(new javax.swing.ImageIcon("src\\main\\resources\\cards\\" + getTopCardImage()));
+                        juegoCpu.revalidate();
+
+                        System.out.println("el color elegido es " + validColor);
+                        
+                        if (card.getValue() == UnoCard.Value.Wild_Four) {
+                            var pid = playerIds[currentPlayer];
+                            getPlayerHand(pid).add(deck.drawCard());
+                            getPlayerHand(pid).add(deck.drawCard());
+                            getPlayerHand(pid).add(deck.drawCard());
+                            getPlayerHand(pid).add(deck.drawCard());
+                            JLabel message = new JLabel(pid + " recoge 4 cartas");
+                            message.setFont(new Font("Arial", Font.BOLD, 48));
+                            JOptionPane.showMessageDialog(null, message);
+                        }
+
                         break;
                     }
                 }
-
             }
+
+            juegoCpu.habilitadorDeButtons(true);
 
 //            if (card.getValue() == UnoCard.Value.DrawTwo) {
 //                var pid = playerIds[currentPlayer];
@@ -463,6 +537,10 @@ public class Game {
 
     public String getJugador() {
         return this.jugadores.get(this.currentPlayer);
+    }
+
+    public String[] getPidsList() {
+        return this.playerIds;
     }
 
     public String getPreviousPlayer(int i) {

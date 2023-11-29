@@ -149,46 +149,45 @@ public class PopUpp extends javax.swing.JFrame {
                 this.setVisible(false);
             }
         }
+        
+       
     }//GEN-LAST:event_useCardButtonActionPerformed
 
     private void useCardCPUActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_useCardCPUActionPerformed
 
-        
-        if( playerHand.get(choice).getColor() == UnoCard.Color.Wild){
-        
-        wildCardPickColor();
-            
-        }else{
-        
-        PickColorFramee pickColor = new PickColorFramee(this, true);
-        declaredColor = pickColor.choseColor(playerHand.get(choice));
+        if (playerHand.get(choice).getColor() == UnoCard.Color.Wild) {
 
-        boolean eleccion = true;
+            wildCardPickColor();
 
-       
-        if (declaredColor != null) {
-            try {
-                
-                
-                game.submitPlayerCard(game.getCurrentPlayer(), playerHand.get(choice), declaredColor);
-                this.revalidate();
-                juegoCPU.setPidName(game.getCurrentPlayer());
-                juegoCPU.setButtonIcons();
-                topCardButton.setIcon(new javax.swing.ImageIcon("src\\main\\resources\\cards\\" + game.getTopCardImage()));
-                this.setVisible(false);
+        } else {
 
-                
-                //despues de la jugada de un jugador, se llama a instanciaCPU() que lo que hace es decidir la carta de la cpu
-                game.instanciaCPU();
+            PickColorFramee pickColor = new PickColorFramee(this, true);
+            declaredColor = pickColor.choseColor(playerHand.get(choice));
 
-            } catch (InvalidColorSubmissionExcpetion | InvalidValueSubmissionException | InvalidPlayerTurnException ex) {
-                Logger.getLogger(PopUpp.class.getName()).log(Level.SEVERE, null, ex);
+            boolean eleccion = true;
+
+            if (declaredColor != null) {
+                try {
+
+                    game.submitPlayerCard(game.getCurrentPlayer(), playerHand.get(choice), declaredColor);
+
+//                juegoCPU.setPidName(game.getCurrentPlayer());
+//                juegoCPU.setButtonIcons();
+                    topCardButton.setIcon(new javax.swing.ImageIcon("src\\main\\resources\\cards\\" + game.getTopCardImage()));
+                    this.setVisible(false);
+                    this.revalidate();
+
+                    //despues de la jugada de un jugador, se llama a instanciaCPU() que lo que hace es decidir la carta de la cpu
+                    game.instanciaCPU();
+
+                } catch (InvalidColorSubmissionExcpetion | InvalidValueSubmissionException | InvalidPlayerTurnException ex) {
+                    Logger.getLogger(PopUpp.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
-        }
 
-        
         }
         
+
     }//GEN-LAST:event_useCardCPUActionPerformed
 
     public static void main(String args[]) {
@@ -199,21 +198,19 @@ public class PopUpp extends javax.swing.JFrame {
             }
         });
     }
-    
-    public void wildCardPickColor(){
-    
-     ColorChosenCallback callback = (declaredColor) -> {
+
+    public void wildCardPickColor() {
+
+        ColorChosenCallback callback = (declaredColor) -> {
             if (declaredColor != null) {
                 try {
                     game.submitPlayerCard(game.getCurrentPlayer(), playerHand.get(choice), declaredColor);
                     this.revalidate();
-                    juegoCPU.setPidName(game.getCurrentPlayer());
-                    juegoCPU.setButtonIcons();
                     topCardButton.setIcon(new javax.swing.ImageIcon("src\\main\\resources\\cards\\" + game.getTopCardImage()));
+
                     this.setVisible(false);
 
-                    logicaCPU logicaCPU = new logicaCPU(game.getPlayerHand(game.jugadores.get(1)), this.game, this.juegoCPU);
-                    logicaCPU.cpuJuegaCarta(declaredColor);
+                    game.instanciaCPU();
 
                 } catch (InvalidColorSubmissionExcpetion | InvalidValueSubmissionException | InvalidPlayerTurnException ex) {
                     Logger.getLogger(PopUpp.class.getName()).log(Level.SEVERE, null, ex);
@@ -223,7 +220,7 @@ public class PopUpp extends javax.swing.JFrame {
 
         PickColorFramee pickColor = new PickColorFramee(this, true, callback);
         declaredColor = pickColor.choseColor(playerHand.get(choice));
-    
+
     }
 
 

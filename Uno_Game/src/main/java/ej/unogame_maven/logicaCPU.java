@@ -23,8 +23,6 @@ public class logicaCPU {
 
     public void cpuJuegaCarta(UnoCard.Color declaredColor) {
 
-        
-        
         //cpuHand
         boolean cartaJugada = false;
 
@@ -32,9 +30,9 @@ public class logicaCPU {
             if (carta.getColor() == game.getTopCard().getColor()
                     || carta.getColor() == UnoCard.Color.Wild
                     || carta.getValue() == game.getTopCard().getValue()) {
-                
+
                 try {
-                                       
+
                     System.out.println(carta);
                     game.submitCpuCard(game.getJugador(), carta, declaredColor);
 
@@ -42,15 +40,11 @@ public class logicaCPU {
                     Logger.getLogger(PopUpp.class.getName()).log(Level.SEVERE, null, ex);
                 }
 
+                juegoCpu.setPidName(game.getCurrentPlayer());
+                juegoCpu.setButtonIcons();
+                juegoCpu.setTopCardButtonIcon();
                 juegoCpu.revalidate();
 
-             
-                    juegoCpu.setPidName(game.getCurrentPlayer());
-                    juegoCpu.setButtonIcons();
-                    juegoCpu.setTopCardButtonIcon();
-                    
-                                  
-                
                 cartaJugada = true;
 
                 break;
@@ -69,7 +63,6 @@ public class logicaCPU {
 
             UnoCard cartaRobada = mazo.drawCard();
 
-
             juegoCpu.revalidate();
 
             try {
@@ -86,9 +79,7 @@ public class logicaCPU {
             }
             System.out.println("////////////////////");
 
-            juegoCpu.setPidName(game.getJugador());
-            juegoCpu.setButtonIcons();
-
+           
         }
     }
     // Verificar si la carta recién robada se puede jugar

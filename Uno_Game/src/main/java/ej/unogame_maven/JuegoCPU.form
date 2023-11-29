@@ -26,69 +26,63 @@
           <Group type="102" attributes="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+                              <Component id="labelNombre" min="-2" pref="456" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jButton1" min="-2" pref="85" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jButton2" min="-2" pref="85" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jButton3" min="-2" pref="85" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jButton4" min="-2" pref="85" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jButton5" min="-2" pref="85" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jButton6" min="-2" pref="85" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jButton7" min="-2" pref="85" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jButton8" min="-2" pref="85" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jButton1" min="-2" pref="85" max="-2" attributes="0"/>
+                      <Component id="jButton9" min="-2" pref="85" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jButton2" min="-2" pref="85" max="-2" attributes="0"/>
+                      <Component id="jButton10" min="-2" pref="85" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jButton3" min="-2" pref="85" max="-2" attributes="0"/>
+                      <Component id="jButton11" min="-2" pref="85" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jButton4" min="-2" pref="85" max="-2" attributes="0"/>
+                      <Component id="jButton12" min="-2" pref="85" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jButton5" min="-2" pref="85" max="-2" attributes="0"/>
+                      <Component id="jButton13" min="-2" pref="85" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jButton6" min="-2" pref="85" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jButton7" min="-2" pref="85" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jButton8" min="-2" pref="85" max="-2" attributes="0"/>
+                      <Component id="jButton14" min="-2" pref="85" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="461" max="-2" attributes="0"/>
                       <Component id="downCard" min="-2" pref="140" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="59" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
                       <Component id="topCardButton" min="-2" pref="140" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
-                      <Component id="btnLevantarCarta" min="-2" pref="213" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
-                      <Component id="labelNombre" min="-2" pref="456" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="jButton9" min="-2" pref="85" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="jButton10" min="-2" pref="85" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="jButton11" min="-2" pref="85" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="jButton12" min="-2" pref="85" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="jButton13" min="-2" pref="85" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="jButton14" min="-2" pref="85" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace pref="235" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="topCardButton" min="-2" pref="170" max="-2" attributes="0"/>
-                          <Component id="downCard" min="-2" pref="170" max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="96" max="-2" attributes="0"/>
-                      <Component id="btnLevantarCarta" min="-2" max="-2" attributes="0"/>
-                  </Group>
+                  <Component id="downCard" min="-2" pref="170" max="-2" attributes="0"/>
+                  <Component id="topCardButton" min="-2" pref="170" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="284" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="99" max="-2" attributes="0"/>
               <Component id="labelNombre" min="-2" pref="64" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
@@ -121,19 +115,11 @@
           <Image iconType="3" name="/cards/Card_Back.png"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="downCardActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="topCardButton">
-    </Component>
-    <Component class="javax.swing.JButton" name="btnLevantarCarta">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Yu Gothic UI Semibold" size="48" style="0"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="Robar"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnLevantarCartaActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jButton10">
       <Events>

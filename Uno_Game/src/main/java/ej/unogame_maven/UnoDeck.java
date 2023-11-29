@@ -10,7 +10,7 @@ public class UnoDeck {
     private int cardsInDeck;
 
     public UnoDeck() {
-        cards = new UnoCard[90]; // 108 con todas las cartas
+        cards = new UnoCard[84]; // 108 con todas las cartas
         reset();
     }
 
@@ -36,20 +36,20 @@ public class UnoDeck {
 //            }
         }
 
-//        UnoCard.Value[] values = new UnoCard.Value[]{UnoCard.Value.Wild, UnoCard.Value.Wild_Four}; //8 cartas
-//        
+        UnoCard.Value[] values = new UnoCard.Value[]{UnoCard.Value.Wild, UnoCard.Value.Wild_Four}; //8 cartas
+        
+        for (UnoCard.Value value : values) {
+            for (int i = 0; i < 4; i++) {
+                cards[cardsInDeck++] = new UnoCard(UnoCard.Color.Wild, value);
+            }
+        }   
+//        UnoCard.Value[] values = new UnoCard.Value[]{UnoCard.Value.Wild_Four}; 
+//
 //        for (UnoCard.Value value : values) {
 //            for (int i = 0; i < 4; i++) {
 //                cards[cardsInDeck++] = new UnoCard(UnoCard.Color.Wild, value);
 //            }
-//        }   
-        UnoCard.Value[] values = new UnoCard.Value[]{UnoCard.Value.Wild}; 
-
-        for (UnoCard.Value value : values) {
-            for (int i = 0; i < 14; i++) {
-                cards[cardsInDeck++] = new UnoCard(UnoCard.Color.Wild, value);
-            }
-        }
+//        }
     }
 
     public void replaceDeckWith(ArrayList<UnoCard> cards) {

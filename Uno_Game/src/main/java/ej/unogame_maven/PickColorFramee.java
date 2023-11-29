@@ -127,9 +127,9 @@ public class PickColorFramee extends javax.swing.JFrame {
 
     private void redButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_redButtonActionPerformed
         wildColor = UnoCard.Color.Red;
-        JLabel message = new JLabel("El color es rojo");
-        message.setFont(new Font("Arial", Font.BOLD, 24));
-        JOptionPane.showMessageDialog(null, message);
+//        JLabel message = new JLabel("El color es rojo");
+//        message.setFont(new Font("Arial", Font.BOLD, 24));
+//        JOptionPane.showMessageDialog(null, message);
         allow = true;
         this.dispose();
         popUp.declaredColor = UnoCard.Color.Red;
@@ -151,9 +151,9 @@ public class PickColorFramee extends javax.swing.JFrame {
 
     private void blueButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_blueButtonActionPerformed
         wildColor = UnoCard.Color.Blue;
-        JLabel message = new JLabel("El color es azul");
-        message.setFont(new Font("Arial", Font.BOLD, 24));
-        JOptionPane.showMessageDialog(null, message);
+//        JLabel message = new JLabel("El color es azul");
+//        message.setFont(new Font("Arial", Font.BOLD, 24));
+//        JOptionPane.showMessageDialog(null, message);
         allow = true;
         this.dispose();
         popUp.declaredColor = UnoCard.Color.Blue;
@@ -175,9 +175,9 @@ public class PickColorFramee extends javax.swing.JFrame {
 
     private void greenButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_greenButtonActionPerformed
         wildColor = UnoCard.Color.Green;
-        JLabel message = new JLabel("El color es verde");
-        message.setFont(new Font("Arial", Font.BOLD, 24));
-        JOptionPane.showMessageDialog(null, message);
+//        JLabel message = new JLabel("El color es verde");
+//        message.setFont(new Font("Arial", Font.BOLD, 24));
+//        JOptionPane.showMessageDialog(null, message);
         allow = true;
         this.dispose();
         popUp.declaredColor = UnoCard.Color.Green;
@@ -199,9 +199,9 @@ public class PickColorFramee extends javax.swing.JFrame {
 
     private void yellowButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_yellowButtonActionPerformed
         wildColor = UnoCard.Color.Yellow;
-        JLabel message = new JLabel("El color es amarillo");
-        message.setFont(new Font("Arial", Font.BOLD, 24));
-        JOptionPane.showMessageDialog(null, message);
+//        JLabel message = new JLabel("El color es amarillo");
+//        message.setFont(new Font("Arial", Font.BOLD, 24));
+//        JOptionPane.showMessageDialog(null, message);
         allow = true;
         this.dispose();
         popUp.declaredColor = UnoCard.Color.Yellow;
