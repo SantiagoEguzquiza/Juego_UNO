@@ -12,11 +12,13 @@ ej\unogame_maven\GameStagee.class
 ej\unogame_maven\JuegoCPU$14.class
 ej\unogame_maven\PickColorFramee$4.class
 ej\unogame_maven\logicaCPU.class
+ej\unogame_maven\Server.class
 ej\unogame_maven\Game$InvalidValueSubmissionException.class
 ej\unogame_maven\Menu$2.class
 ej\unogame_maven\PickColorFramee.class
 ej\unogame_maven\JuegoCPU$11.class
 ej\unogame_maven\Menu.class
+ej\unogame_maven\Menu$5.class
 ej\unogame_maven\AddPlayersNamess$2.class
 ej\unogame_maven\Menu$3.class
 ej\unogame_maven\PickColorFramee$5.class
@@ -46,10 +48,13 @@ ej\unogame_maven\GameStagee$13.class
 ej\unogame_maven\GameStagee$4.class
 ej\unogame_maven\GameStagee$10.class
 ej\unogame_maven\AddPlayersNamess$1.class
+ej\unogame_maven\IJugarUno.class
+ej\unogame_maven\salaEsperaOnline$1.class
 ej\unogame_maven\PopUpp$3.class
 ej\unogame_maven\Game$InvalidPlayerTurnException.class
 ej\unogame_maven\JuegoCPU$13.class
 ej\unogame_maven\GameStagee$7.class
+ej\unogame_maven\Cliente.class
 ej\unogame_maven\GameStagee$16.class
 ej\unogame_maven\PickColorFramee$1.class
 ej\unogame_maven\AddPlayersNamess.class
@@ -60,6 +65,7 @@ ej\unogame_maven\UnoCard$Value.class
 ej\unogame_maven\JuegoCPU$12.class
 ej\unogame_maven\UnoCard.class
 ej\unogame_maven\GameStagee$15.class
+ej\unogame_maven\salaEsperaOnline.class
 ej\unogame_maven\JuegoCPU$4.class
 ej\unogame_maven\PickColorFramee$2.class
 ej\unogame_maven\UnoCard$Color.class

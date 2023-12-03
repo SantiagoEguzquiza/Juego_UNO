@@ -76,6 +76,7 @@ public class Game {
 
     }
 
+    //////////////////////////////////// DELAY DE LA CPU////////////////////////////////////
     private final ScheduledExecutorService executor = Executors.newSingleThreadScheduledExecutor();
 
     public void instanciaCPU() {
@@ -91,6 +92,7 @@ public class Game {
         ArrayList<UnoCard> a = this.getPlayerHand("CPU");
 
     }
+    //////////////////////////////////////////////////////////////////////////////////////////////
 
     public void start(Game game) {
 
@@ -180,7 +182,9 @@ public class Game {
         }
         return false;
     }
-
+    
+    
+    // Robar una carta
     public void submitDraw(String pId) throws InvalidPlayerTurnException {
 
         checkPlayerTurn(pId);
@@ -404,10 +408,9 @@ public class Game {
                         break;
 
                     } else {
-                        
+
                         //Si solo le quedan cartas del color Wild, elige el color rojo como predeterminado y continua con la logica
                         // hay que arreglarlo para no duplicar el codigo del WildFour
-
                         declaredColor = UnoCard.Color.Red;
                         validColor = declaredColor;
 
@@ -421,7 +424,7 @@ public class Game {
                         juegoCpu.revalidate();
 
                         System.out.println("el color elegido es " + validColor);
-                        
+
                         if (card.getValue() == UnoCard.Value.Wild_Four) {
                             var pid = playerIds[currentPlayer];
                             getPlayerHand(pid).add(deck.drawCard());

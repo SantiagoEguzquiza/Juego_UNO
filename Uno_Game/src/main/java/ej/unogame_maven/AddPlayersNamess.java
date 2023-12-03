@@ -20,7 +20,7 @@ public class AddPlayersNamess extends javax.swing.JFrame {
        // this.setUndecorated(true);
         initComponents();
         this.cpu = cpu;
-        btnGuardar.setVisible(false); //ocultamos boton guardar xq solo hay un player
+        btnGuardar.setVisible(false); //ocultamos boton guardar xq solo hay un player vs la cpu
     }
 
     public String[] getPids() {
