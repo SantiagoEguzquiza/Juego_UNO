@@ -178,7 +178,10 @@ public class PopUpp extends javax.swing.JFrame {
                     this.revalidate();
 
                     //despues de la jugada de un jugador, se llama a instanciaCPU() que lo que hace es decidir la carta de la cpu
-                    game.instanciaCPU();
+                    if (game.getCurrentPlayer() == "CPU") {
+                      game.instanciaCPU();  
+                    }
+                    
 
                 } catch (InvalidColorSubmissionExcpetion | InvalidValueSubmissionException | InvalidPlayerTurnException ex) {
                     Logger.getLogger(PopUpp.class.getName()).log(Level.SEVERE, null, ex);

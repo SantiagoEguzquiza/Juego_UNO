@@ -7,9 +7,9 @@ import java.util.logging.Logger;
 
 public class logicaCPU {
 
-    ArrayList<UnoCard> cpuHand;
-    Game game;
-    JuegoCPU juegoCpu;
+    private ArrayList<UnoCard> cpuHand;
+    private Game game;
+    private JuegoCPU juegoCpu;
 
     public logicaCPU() {
 
@@ -81,6 +81,14 @@ public class logicaCPU {
 
            
         }
+    }
+    
+    
+    public String cantidadCartas(){
+    
+    String cartas = String.valueOf(this.cpuHand.size());
+    return cartas;
+    
     }
     // Verificar si la carta recién robada se puede jugar
 //            if (cartaRobada.getColor() == game.getTopCard().getColor() || cartaRobada.getColor() == UnoCard.Color.Wild || cartaRobada.getValue() == game.getTopCard().getValue()) {

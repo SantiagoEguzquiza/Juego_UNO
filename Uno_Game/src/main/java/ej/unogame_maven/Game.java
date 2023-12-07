@@ -3,7 +3,6 @@ package ej.unogame_maven;
 import java.awt.Font;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashSet;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -16,11 +15,12 @@ public class Game {
 
     private int currentPlayer;
 
-    JuegoCPU juegoCpu;
-    JButton topCardButton;
+    private JuegoCPU juegoCpu;
+    private JButton topCardButton;
 
     private String[] playerIds;
-    ArrayList<String> jugadores = new ArrayList<>();
+
+    ArrayList<String> jugadores = new ArrayList<>();  //Logica CPU la usa, hay que hacerle un getter
 
     private UnoDeck deck;
     private ArrayList<ArrayList<UnoCard>> playerHand;
@@ -76,7 +76,7 @@ public class Game {
 
     }
 
-    //////////////////////////////////// DELAY DE LA CPU////////////////////////////////////
+    ////////////////////////////// CPU JUEGA CARTA Y DELAY DE LA CPU//////////////////////////////
     private final ScheduledExecutorService executor = Executors.newSingleThreadScheduledExecutor();
 
     public void instanciaCPU() {
@@ -89,7 +89,7 @@ public class Game {
         logicaCPU logica = new logicaCPU(getPlayerHand(getCurrentPlayer()), this, juegoCpu);
         logica.cpuJuegaCarta(getTopCard().getColor());
 
-        ArrayList<UnoCard> a = this.getPlayerHand("CPU");
+        
 
     }
     //////////////////////////////////////////////////////////////////////////////////////////////
@@ -153,14 +153,7 @@ public class Game {
             message.setFont(new Font("Arial", Font.BOLD, 48));
             JOptionPane.showMessageDialog(null, message);
 
-            if (gameDirection == false) {
-                currentPlayer = (currentPlayer + 1) % playerIds.length;
-            } else if (gameDirection == true) {
-                currentPlayer = (currentPlayer - 1) % playerIds.length;
-                if (currentPlayer == -1) {
-                    currentPlayer = playerIds.length - 1;
-                }
-            }
+            cambioDeTurno(); //vuelve a cambiar de jugador para saltearse una persona
         }
 
         if (card.getValue() == UnoCard.Value.Reverse) {
@@ -182,8 +175,7 @@ public class Game {
         }
         return false;
     }
-    
-    
+
     // Robar una carta
     public void submitDraw(String pId) throws InvalidPlayerTurnException {
 
@@ -209,14 +201,7 @@ public class Game {
             juegoCpu.habilitadorDeButtons(true);
         }
 
-        if (gameDirection == false) {
-            currentPlayer = (currentPlayer + 1) % playerIds.length;
-        } else if (gameDirection == true) {
-            currentPlayer = (currentPlayer - 1) % playerIds.length;
-            if (currentPlayer == -1) {
-                currentPlayer = playerIds.length - 1;
-            }
-        }
+        cambioDeTurno();
 
     }
 
@@ -249,12 +234,14 @@ public class Game {
                 throw new InvalidValueSubmissionException(message2, card.getValue(), validValue);
             }
         }
+        
+        
         pHand.remove(card);
-
-        juegoCpu.setPidName(getCurrentPlayer());
-        juegoCpu.setButtonIcons();
-        juegoCpu.habilitadorDeButtons(false);
-        juegoCpu.revalidate();
+        this.actualizarInterfaz();
+        
+        
+        
+        
 
         if (hasEmptyHand(this.playerIds[currentPlayer])) {
             JLabel message2 = new JLabel(this.playerIds[currentPlayer] + " gano la partida!");
@@ -305,6 +292,12 @@ public class Game {
                     currentPlayer = playerIds.length - 1;
                 }
             }
+
+            if (this.getCurrentPlayer() != "CPU") {
+
+                this.actualizarInterfaz();
+
+            }
         }
         if (card.getValue() == UnoCard.Value.Reverse) {
             if (playerIds.length == 2) {
@@ -318,6 +311,12 @@ public class Game {
                     if (currentPlayer == -1) {
                         currentPlayer = playerIds.length - 1;
                     }
+                }
+
+                if (this.getCurrentPlayer() != "CPU") {
+
+                    this.actualizarInterfaz();
+
                 }
             }
 
@@ -362,14 +361,7 @@ public class Game {
             validColor = card.getColor();
             validValue = card.getValue();
 
-            if (gameDirection == false) {
-                currentPlayer = (currentPlayer + 1) % playerIds.length;
-            } else if (gameDirection == true) {
-                currentPlayer = (currentPlayer - 1) % playerIds.length;
-                if (currentPlayer == -1) {
-                    currentPlayer = playerIds.length - 1;
-                }
-            }
+            cambioDeTurno();
 
             if (card.getColor() == UnoCard.Color.Wild) {
 
@@ -443,66 +435,67 @@ public class Game {
 
             juegoCpu.habilitadorDeButtons(true);
 
-//            if (card.getValue() == UnoCard.Value.DrawTwo) {
-//                var pid = playerIds[currentPlayer];
-//                getPlayerHand(pid).add(deck.drawCard());
-//                getPlayerHand(pid).add(deck.drawCard());
-//                JLabel message = new JLabel(pid + " recoge 2 cartas");
-//                message.setFont(new Font("Arial", Font.BOLD, 48));
-//                JOptionPane.showMessageDialog(null, message);
-//            }
-//            if (card.getValue() == UnoCard.Value.Wild_Four) {
-//                var pid = playerIds[currentPlayer];
-//                getPlayerHand(pid).add(deck.drawCard());
-//                getPlayerHand(pid).add(deck.drawCard());
-//                getPlayerHand(pid).add(deck.drawCard());
-//                getPlayerHand(pid).add(deck.drawCard());
-//                JLabel message = new JLabel(pid + " recoge 4 cartas");
-//                message.setFont(new Font("Arial", Font.BOLD, 48));
-//                JOptionPane.showMessageDialog(null, message);
-//            }
-//            if (card.getValue() == UnoCard.Value.Skip) {
-//                JLabel message = new JLabel(playerIds[currentPlayer] + " fue salteado!");
-//                message.setFont(new Font("Arial", Font.BOLD, 48));
-//                JOptionPane.showMessageDialog(null, message);
-//                if (gameDirection == false) {
-//                    currentPlayer = (currentPlayer + 1) % playerIds.length;
-//                } else if (gameDirection == true) {
-//                    currentPlayer = (currentPlayer - 1) % playerIds.length;
-//                    if (currentPlayer == -1) {
-//                        currentPlayer = playerIds.length - 1;
-//                    }
-//                }
-//
-//            }
-//            if (card.getValue() == UnoCard.Value.Reverse) {
-//                if (playerIds.length == 2) {
-//                    JLabel message = new JLabel("Se cambio la direccion del juego");
-//                    message.setFont(new Font("Arial", Font.BOLD, 48));
-//                    JOptionPane.showMessageDialog(null, message);
-//                    if (gameDirection == false) {
-//                        currentPlayer = (currentPlayer + 1) % playerIds.length;
-//                    } else if (gameDirection == true) {
-//                        currentPlayer = (currentPlayer - 1) % playerIds.length;
-//                        if (currentPlayer == -1) {
-//                            currentPlayer = playerIds.length - 1;
-//                        }
-//                    }
-//                }
-//
-//                gameDirection ^= true;
-//                if (gameDirection == true) {
-//                    currentPlayer = (currentPlayer - 2) % playerIds.length;
-//                    if (currentPlayer == -1) {
-//                        currentPlayer = playerIds.length - 1;
-//                    }
-//                    if (currentPlayer == -2) {
-//                        currentPlayer = playerIds.length - 2;
-//                    }
-//                } else if (gameDirection == false) {
-//                    currentPlayer = (currentPlayer + 2) % playerIds.length;
-//                }
-//            }
+            if (card.getValue() == UnoCard.Value.DrawTwo) {
+                var pid = playerIds[currentPlayer];
+                getPlayerHand(pid).add(deck.drawCard());
+                getPlayerHand(pid).add(deck.drawCard());
+                JLabel message = new JLabel(pid + " recoge 2 cartas");
+                message.setFont(new Font("Arial", Font.BOLD, 48));
+                JOptionPane.showMessageDialog(null, message);
+            }
+
+            if (card.getValue() == UnoCard.Value.Skip) {
+
+                this.juegoCpu.setTopCardButtonIcon();
+                this.juegoCpu.revalidate();
+
+                JLabel message = new JLabel(playerIds[currentPlayer] + " fue salteado!");
+                message.setFont(new Font("Arial", Font.BOLD, 48));
+                JOptionPane.showMessageDialog(null, message);
+                if (gameDirection == false) {
+                    currentPlayer = (currentPlayer + 1) % playerIds.length;
+                } else if (gameDirection == true) {
+                    currentPlayer = (currentPlayer - 1) % playerIds.length;
+                    if (currentPlayer == -1) {
+                        currentPlayer = playerIds.length - 1;
+                    }
+                }
+
+                this.ejecutarLogicaCPU();
+
+            }
+            if (card.getValue() == UnoCard.Value.Reverse) {
+                if (playerIds.length == 2) {
+                    JLabel message = new JLabel("Se cambio la direccion del juego");
+                    message.setFont(new Font("Arial", Font.BOLD, 48));
+                    JOptionPane.showMessageDialog(null, message);
+                    if (gameDirection == false) {
+                        currentPlayer = (currentPlayer + 1) % playerIds.length;
+                    } else if (gameDirection == true) {
+                        currentPlayer = (currentPlayer - 1) % playerIds.length;
+                        if (currentPlayer == -1) {
+                            currentPlayer = playerIds.length - 1;
+                        }
+                    }
+                }
+
+                gameDirection ^= true;
+                if (gameDirection == true) {
+                    currentPlayer = (currentPlayer - 2) % playerIds.length;
+                    if (currentPlayer == -1) {
+                        currentPlayer = playerIds.length - 1;
+                    }
+                    if (currentPlayer == -2) {
+                        currentPlayer = playerIds.length - 2;
+                    }
+                } else if (gameDirection == false) {
+                    currentPlayer = (currentPlayer + 2) % playerIds.length;
+                }
+
+                if (this.getCurrentPlayer() == "CPU") {
+                    this.ejecutarLogicaCPU();
+                }
+            }
         }
     }
 
@@ -520,6 +513,7 @@ public class Game {
                 currentPlayer = playerIds.length - 1;
             }
         }
+
     }
 
     public UnoCard getTopCard() {
@@ -592,6 +586,20 @@ public class Game {
 
     public UnoDeck getDeck() {
         return deck;
+    }
+
+    public void actualizarInterfaz() {
+
+        ArrayList<UnoCard> a = this.getPlayerHand("CPU");
+       
+        
+        juegoCpu.setPidName(getCurrentPlayer());
+        juegoCpu.setButtonIcons();
+        juegoCpu.habilitadorDeButtons(true);
+        juegoCpu.setCantCartas(String.valueOf(a.size()));
+        juegoCpu.revalidate();
+        
+    
     }
 
     public void setCurrentPlayer(int currentPlayer) {

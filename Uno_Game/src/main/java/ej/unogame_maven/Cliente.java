@@ -52,7 +52,7 @@ public class Cliente {
     
     public void verMenu() {
         try {
-            server.verMenu(); // Llama al método remoto del servidor para robar una carta
+            server.verMenu(); 
         } catch (RemoteException e) {
             e.printStackTrace();
         }

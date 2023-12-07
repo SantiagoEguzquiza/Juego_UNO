@@ -9,8 +9,8 @@ public class UnoDeck {
     private UnoCard[] cards;
     private int cardsInDeck;
 
-    public UnoDeck() {
-        cards = new UnoCard[84]; // 108 con todas las cartas
+    public UnoDeck() { //84 sin las 16 de drawtwo
+        cards = new UnoCard[100]; // 108 con todas las cartas
         reset();
     }
 
@@ -34,22 +34,27 @@ public class UnoDeck {
 //                cards[cardsInDeck++] = new UnoCard(color, value);
 //                cards[cardsInDeck++] = new UnoCard(color, value);
 //            }
+
+            UnoCard.Value[] values = new UnoCard.Value[]{UnoCard.Value.Reverse}; //24 cartas
+            
+            for (UnoCard.Value value : values) {
+                cards[cardsInDeck++] = new UnoCard(color, value);
+                cards[cardsInDeck++] = new UnoCard(color, value); 
+                cards[cardsInDeck++] = new UnoCard(color, value);
+                cards[cardsInDeck++] = new UnoCard(color, value); 
+            }
         }
 
-        UnoCard.Value[] values = new UnoCard.Value[]{UnoCard.Value.Wild, UnoCard.Value.Wild_Four}; //8 cartas
+        
+        // cartas de cambio color y +4
+        // 8 cartas en total, 4 y 4
+        UnoCard.Value[] values = new UnoCard.Value[]{UnoCard.Value.Wild, UnoCard.Value.Wild_Four}; 
         
         for (UnoCard.Value value : values) {
             for (int i = 0; i < 4; i++) {
                 cards[cardsInDeck++] = new UnoCard(UnoCard.Color.Wild, value);
             }
         }   
-//        UnoCard.Value[] values = new UnoCard.Value[]{UnoCard.Value.Wild_Four}; 
-//
-//        for (UnoCard.Value value : values) {
-//            for (int i = 0; i < 4; i++) {
-//                cards[cardsInDeck++] = new UnoCard(UnoCard.Color.Wild, value);
-//            }
-//        }
     }
 
     public void replaceDeckWith(ArrayList<UnoCard> cards) {
