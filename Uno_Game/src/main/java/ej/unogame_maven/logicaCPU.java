@@ -39,12 +39,16 @@ public class logicaCPU {
                 } catch (Game.InvalidColorSubmissionExcpetion | Game.InvalidValueSubmissionException | Game.InvalidPlayerTurnException ex) {
                     Logger.getLogger(PopUpp.class.getName()).log(Level.SEVERE, null, ex);
                 }
-
-                juegoCpu.setPidName(game.getCurrentPlayer());
-                juegoCpu.setButtonIcons();
-                juegoCpu.setTopCardButtonIcon();
-                juegoCpu.setCantCartas(cpuHand.size());
-                juegoCpu.revalidate();
+                
+                if (game.getCurrentPlayer() != "CPU") {
+                    
+                    juegoCpu.setPidName(game.getCurrentPlayer());
+                    juegoCpu.setButtonIcons();
+                    juegoCpu.setTopCardButtonIcon();
+                    juegoCpu.setCantCartas(cpuHand.size());
+                    juegoCpu.revalidate();  
+                    
+                }
 
                 cartaJugada = true;
 
@@ -70,8 +74,8 @@ public class logicaCPU {
                 Logger.getLogger(GameStagee.class.getName()).log(Level.SEVERE, null, ex);
             }
 
-            
-            juegoCpu.setCantCartas(cpuHand.size());
+           
+            juegoCpu.setCantCartas(cpuHand.size()); // setea la label de cantidad de cartas de cpu
             juegoCpu.revalidate();
             
             System.out.println("----------------");

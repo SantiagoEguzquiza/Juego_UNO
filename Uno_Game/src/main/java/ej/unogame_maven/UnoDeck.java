@@ -10,7 +10,7 @@ public class UnoDeck {
     private int cardsInDeck;
 
     public UnoDeck() { //84 sin las 16 de drawtwo
-        cards = new UnoCard[100]; // 108 con todas las cartas
+        cards = new UnoCard[108]; // 108 con todas las cartas
         reset();
     }
 
@@ -28,21 +28,19 @@ public class UnoDeck {
                 cards[cardsInDeck++] = new UnoCard(color, UnoCard.Value.getValue(j));
             }
 
-//            UnoCard.Value[] values = new UnoCard.Value[]{UnoCard.Value.DrawTwo, UnoCard.Value.Skip, UnoCard.Value.Reverse}; //24 cartas
-//            
-//            for (UnoCard.Value value : values) {
-//                cards[cardsInDeck++] = new UnoCard(color, value);
-//                cards[cardsInDeck++] = new UnoCard(color, value);
-//            }
-
-            UnoCard.Value[] values = new UnoCard.Value[]{UnoCard.Value.Reverse}; //24 cartas
+            UnoCard.Value[] values = new UnoCard.Value[]{UnoCard.Value.DrawTwo, UnoCard.Value.Skip, UnoCard.Value.Reverse}; //24 cartas
             
             for (UnoCard.Value value : values) {
                 cards[cardsInDeck++] = new UnoCard(color, value);
-                cards[cardsInDeck++] = new UnoCard(color, value); 
                 cards[cardsInDeck++] = new UnoCard(color, value);
-                cards[cardsInDeck++] = new UnoCard(color, value); 
             }
+
+//            UnoCard.Value[] values = new UnoCard.Value[]{UnoCard.Value.Reverse}; //24 cartas
+//            
+//            for (UnoCard.Value value : values) {
+//                cards[cardsInDeck++] = new UnoCard(color, value);
+//                cards[cardsInDeck++] = new UnoCard(color, value);                 
+//            }
         }
 
         

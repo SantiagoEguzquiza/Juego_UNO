@@ -1,15 +1,16 @@
 package ej.unogame_maven;
 
 import java.awt.Font;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 public class PickColorFramee extends javax.swing.JFrame {
 
     private UnoCard.Color wildColor = null;
-    Boolean allow = false;
-    PopUpp popUp;
-    Boolean tipoJuego;
+    private Boolean allow = false;
+    private PopUpp popUp;
+    private Boolean tipoJuego;
     private ColorChosenCallback callback;
 
     public PickColorFramee() {
@@ -20,10 +21,14 @@ public class PickColorFramee extends javax.swing.JFrame {
         initComponents();
         popUp = pop;
         this.tipoJuego = tipoJuego;
+        setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
     }
     
      public PickColorFramee(PopUpp pop, boolean tipoJuego, ColorChosenCallback callback) {
-        initComponents();
+         
+         
+        initComponents();  
+        setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         popUp = pop;
         this.tipoJuego = tipoJuego;
         this.callback = callback;
@@ -43,10 +48,12 @@ public class PickColorFramee extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
+        cancelButton = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
         redButton = new javax.swing.JButton();
         blueButton = new javax.swing.JButton();
         greenButton = new javax.swing.JButton();
-        yellowButton = new javax.swing.JButton();
+        yellowButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocation(new java.awt.Point(200, 500));
@@ -54,6 +61,14 @@ public class PickColorFramee extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 36)); // NOI18N
         jLabel1.setText("Elige el color de tu carta");
+
+        cancelButton.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 24)); // NOI18N
+        cancelButton.setText("Cancelar");
+        cancelButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelButtonActionPerformed(evt);
+            }
+        });
 
         redButton.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 24)); // NOI18N
         redButton.setText("Rojo");
@@ -79,13 +94,42 @@ public class PickColorFramee extends javax.swing.JFrame {
             }
         });
 
-        yellowButton.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 24)); // NOI18N
-        yellowButton.setText("Amarillo");
-        yellowButton.addActionListener(new java.awt.event.ActionListener() {
+        yellowButton1.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 24)); // NOI18N
+        yellowButton1.setText("Amarillo");
+        yellowButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                yellowButtonActionPerformed(evt);
+                yellowButton1ActionPerformed(evt);
             }
         });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(redButton, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(greenButton, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(42, 42, 42)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(yellowButton1)
+                    .addComponent(blueButton, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(redButton, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(blueButton, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(greenButton, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(yellowButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -97,13 +141,12 @@ public class PickColorFramee extends javax.swing.JFrame {
                         .addGap(46, 46, 46)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 401, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(193, 193, 193)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(redButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(blueButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(greenButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(yellowButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addContainerGap(53, Short.MAX_VALUE))
+                        .addGap(95, 95, 95)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(179, 179, 179)
+                        .addComponent(cancelButton)))
+                .addGap(40, 40, 40))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -111,14 +154,10 @@ public class PickColorFramee extends javax.swing.JFrame {
                 .addGap(27, 27, 27)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(redButton, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(blueButton, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(greenButton, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(yellowButton, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(60, Short.MAX_VALUE))
+                .addComponent(cancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(119, Short.MAX_VALUE))
         );
 
         pack();
@@ -197,29 +236,13 @@ public class PickColorFramee extends javax.swing.JFrame {
         popUp.dispose();
     }//GEN-LAST:event_greenButtonActionPerformed
 
-    private void yellowButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_yellowButtonActionPerformed
-        wildColor = UnoCard.Color.Yellow;
-//        JLabel message = new JLabel("El color es amarillo");
-//        message.setFont(new Font("Arial", Font.BOLD, 24));
-//        JOptionPane.showMessageDialog(null, message);
-        allow = true;
-        this.dispose();
-        popUp.declaredColor = UnoCard.Color.Yellow;
-        
-        
-        if (tipoJuego) {
-            popUp.juegoCPU.setPidName(popUp.game.getJugador());
-            popUp.juegoCPU.setButtonIcons();
-            callback.colorChosen(UnoCard.Color.Yellow);
-        } else {
-            popUp.gameStage.setPidName(popUp.game.getCurrentPlayer());
-            popUp.gameStage.setButtonIcons();
-        }
+    private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
+        this.setVisible(false);
+    }//GEN-LAST:event_cancelButtonActionPerformed
 
-        popUp.topCardButton.setIcon(new javax.swing.ImageIcon("src\\main\\resources\\cards\\" + popUp.game.getTopCardImage()));
-        popUp.game.setCardColor(UnoCard.Color.Yellow);
-        popUp.dispose();
-    }//GEN-LAST:event_yellowButtonActionPerformed
+    private void yellowButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_yellowButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_yellowButton1ActionPerformed
 
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -231,9 +254,11 @@ public class PickColorFramee extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton blueButton;
+    private javax.swing.JButton cancelButton;
     private javax.swing.JButton greenButton;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JButton redButton;
-    private javax.swing.JButton yellowButton;
+    private javax.swing.JButton yellowButton1;
     // End of variables declaration//GEN-END:variables
 }

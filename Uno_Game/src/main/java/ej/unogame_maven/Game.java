@@ -89,8 +89,6 @@ public class Game {
         logicaCPU logica = new logicaCPU(getPlayerHand(getCurrentPlayer()), this, juegoCpu);
         logica.cpuJuegaCarta(getTopCard().getColor());
 
-        
-
     }
     //////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -162,6 +160,11 @@ public class Game {
             JOptionPane.showMessageDialog(null, message);
             gameDirection ^= true;
             currentPlayer = jugadores.size() - 1;
+
+            if (this.getCurrentPlayer() == "CPU") {
+                this.instanciaCPU();
+            }
+
         }
 
         stockpile.add(card);
@@ -234,17 +237,15 @@ public class Game {
                 throw new InvalidValueSubmissionException(message2, card.getValue(), validValue);
             }
         }
-        
-        
+
         pHand.remove(card);
+
+        //luego de jugar la carta le deshabilita los botones para no pisar el turno del siguiente jugador
+        juegoCpu.habilitadorDeButtons(false);
         this.actualizarInterfaz();
-        
-        
-        
-        
 
         if (hasEmptyHand(this.playerIds[currentPlayer])) {
-            JLabel message2 = new JLabel(this.playerIds[currentPlayer] + " gano la partida!");
+            JLabel message2 = new JLabel(this.playerIds[currentPlayer] + " gano la ronda!");
             message2.setFont(new Font("Arial", Font.BOLD, 48));
             JOptionPane.showMessageDialog(null, message2);
             System.exit(0);
@@ -295,6 +296,7 @@ public class Game {
 
             if (this.getCurrentPlayer() != "CPU") {
 
+                juegoCpu.habilitadorDeButtons(true);
                 this.actualizarInterfaz();
 
             }
@@ -315,6 +317,7 @@ public class Game {
 
                 if (this.getCurrentPlayer() != "CPU") {
 
+                    juegoCpu.habilitadorDeButtons(true);
                     this.actualizarInterfaz();
 
                 }
@@ -350,9 +353,6 @@ public class Game {
             ArrayList<UnoCard> cpuHand = getPlayerHand("CPU");
 
             cpuHand.remove(card);
-            
-            
-            
 
             if (hasEmptyHand(this.playerIds[currentPlayer])) {
                 JLabel message2 = new JLabel(this.playerIds[currentPlayer] + " gano la partida!");
@@ -380,8 +380,6 @@ public class Game {
 
                         juegoCpu.setPidName(getJugador());
                         juegoCpu.setButtonIcons();
-                        
-                        
 
                         System.out.println("valid color: " + validColor);
                         System.out.println("valid value: " + validValue);
@@ -438,8 +436,6 @@ public class Game {
                 }
             }
 
-            juegoCpu.habilitadorDeButtons(true);
-
             if (card.getValue() == UnoCard.Value.DrawTwo) {
                 var pid = playerIds[currentPlayer];
                 getPlayerHand(pid).add(deck.drawCard());
@@ -466,7 +462,7 @@ public class Game {
                     }
                 }
 
-                this.ejecutarLogicaCPU();
+                this.instanciaCPU();
 
             }
             if (card.getValue() == UnoCard.Value.Reverse) {
@@ -497,10 +493,23 @@ public class Game {
                     currentPlayer = (currentPlayer + 2) % playerIds.length;
                 }
 
+                
+                juegoCpu.setTopCardButtonIcon();
+                
+                
+                juegoCpu.revalidate();
+
                 if (this.getCurrentPlayer() == "CPU") {
-                    this.ejecutarLogicaCPU();
+                    juegoCpu.habilitadorDeButtons(false);
+                    this.instanciaCPU();
                 }
             }
+            
+            if (this.getCurrentPlayer() != "CPU") {
+                  juegoCpu.habilitadorDeButtons(true);  
+                }
+            
+            
         }
     }
 
@@ -596,15 +605,13 @@ public class Game {
     public void actualizarInterfaz() {
 
         ArrayList<UnoCard> a = this.getPlayerHand("CPU");
-       juegoCpu.setCantCartas(a.size());
-        
+        juegoCpu.setCantCartas(a.size());
+
         juegoCpu.setPidName(getCurrentPlayer());
         juegoCpu.setButtonIcons();
-        juegoCpu.habilitadorDeButtons(false);
-        
+
         juegoCpu.revalidate();
-        
-    
+
     }
 
     public void setCurrentPlayer(int currentPlayer) {

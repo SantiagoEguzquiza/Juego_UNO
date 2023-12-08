@@ -36,11 +36,16 @@ public class JuegoCPU extends javax.swing.JFrame {
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         this.playerName = playerName;
         game = new Game(playerName, this, topCardButton);
+        
         populateArrayList();
-        game.startCPU(game);
         setPidName();
-        topCardButton.setIcon(new javax.swing.ImageIcon("src\\main\\resources\\cards\\" + game.getTopCardImage()));
         setButtonIcons();
+        
+        
+        game.startCPU(game);
+        
+        topCardButton.setIcon(new javax.swing.ImageIcon("src\\main\\resources\\cards\\" + game.getTopCardImage()));
+        
 
         String path = "src\\main\\resources\\cards\\cartasJugador.drawio.png";
         ImageIcon ic = new ImageIcon(path);
