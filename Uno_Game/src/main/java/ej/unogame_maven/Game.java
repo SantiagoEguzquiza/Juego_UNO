@@ -20,7 +20,7 @@ public class Game {
 
     private String[] playerIds;
 
-    ArrayList<String> jugadores = new ArrayList<>();  //Logica CPU la usa, hay que hacerle un getter
+    ArrayList<String> jugadores = new ArrayList<>();  //Logica CPU la usa y JuegoCPU, hay que hacerle un getter
 
     private UnoDeck deck;
     private ArrayList<ArrayList<UnoCard>> playerHand;
@@ -347,9 +347,12 @@ public class Game {
 
             checkPlayerTurn(pId);
 
-            ArrayList<UnoCard> cpuHand = getPlayerHand(jugadores.get(1));
+            ArrayList<UnoCard> cpuHand = getPlayerHand("CPU");
 
             cpuHand.remove(card);
+            
+            
+            
 
             if (hasEmptyHand(this.playerIds[currentPlayer])) {
                 JLabel message2 = new JLabel(this.playerIds[currentPlayer] + " gano la partida!");
@@ -377,6 +380,8 @@ public class Game {
 
                         juegoCpu.setPidName(getJugador());
                         juegoCpu.setButtonIcons();
+                        
+                        
 
                         System.out.println("valid color: " + validColor);
                         System.out.println("valid value: " + validValue);
@@ -591,12 +596,12 @@ public class Game {
     public void actualizarInterfaz() {
 
         ArrayList<UnoCard> a = this.getPlayerHand("CPU");
-       
+       juegoCpu.setCantCartas(a.size());
         
         juegoCpu.setPidName(getCurrentPlayer());
         juegoCpu.setButtonIcons();
-        juegoCpu.habilitadorDeButtons(true);
-        juegoCpu.setCantCartas(String.valueOf(a.size()));
+        juegoCpu.habilitadorDeButtons(false);
+        
         juegoCpu.revalidate();
         
     
