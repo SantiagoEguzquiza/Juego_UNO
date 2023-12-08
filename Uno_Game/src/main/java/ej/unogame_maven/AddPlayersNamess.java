@@ -7,8 +7,8 @@ import javax.swing.JOptionPane;
 
 public class AddPlayersNamess extends javax.swing.JFrame {
 
-    public ArrayList<String> playerIds;
-    public boolean cpu = false;
+    private ArrayList<String> playerIds;
+    private boolean cpu = false;
 
     public AddPlayersNamess() {
         //this.setUndecorated(true);

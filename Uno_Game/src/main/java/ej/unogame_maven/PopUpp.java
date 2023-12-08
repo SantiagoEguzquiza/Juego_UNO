@@ -11,12 +11,13 @@ import javax.swing.JButton;
 
 public class PopUpp extends javax.swing.JFrame {
 
-    String cardImage = "";
+    private String cardImage = "";
+    private ArrayList<UnoCard> playerHand;
+    private ArrayList<UnoCard> cpuHand;
+    private int choice;
+    private ArrayList<JButton> cardButtons;
+    
     Game game;
-    ArrayList<UnoCard> playerHand;
-    ArrayList<UnoCard> cpuHand;
-    int choice;
-    ArrayList<JButton> cardButtons;
     GameStagee gameStage;
     JuegoCPU juegoCPU;
     JButton topCardButton;

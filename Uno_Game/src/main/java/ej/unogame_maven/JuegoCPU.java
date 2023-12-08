@@ -17,7 +17,7 @@ import javax.swing.SwingWorker;
 
 public class JuegoCPU extends javax.swing.JFrame {
 
-    public String playerName;
+    private String playerName;
 
     private Game game;
 

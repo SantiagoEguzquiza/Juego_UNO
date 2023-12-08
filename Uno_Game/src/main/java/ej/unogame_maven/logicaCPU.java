@@ -1,9 +1,12 @@
 package ej.unogame_maven;
 
+import java.awt.Font;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 public class logicaCPU {
 
@@ -39,15 +42,15 @@ public class logicaCPU {
                 } catch (Game.InvalidColorSubmissionExcpetion | Game.InvalidValueSubmissionException | Game.InvalidPlayerTurnException ex) {
                     Logger.getLogger(PopUpp.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                
+
                 if (game.getCurrentPlayer() != "CPU") {
-                    
+
                     juegoCpu.setPidName(game.getCurrentPlayer());
                     juegoCpu.setButtonIcons();
                     juegoCpu.setTopCardButtonIcon();
                     juegoCpu.setCantCartas(cpuHand.size());
-                    juegoCpu.revalidate();  
-                    
+                    juegoCpu.revalidate();
+
                 }
 
                 cartaJugada = true;
@@ -58,6 +61,11 @@ public class logicaCPU {
 
         // Si ninguna carta se pudo jugar, robar una carta
         if (!cartaJugada) {
+            
+            JLabel message = new JLabel(game.getCurrentPlayer() + " levanto una carta!");
+            message.setFont(new Font("Arial", Font.BOLD, 48));
+            JOptionPane.showMessageDialog(null, message);
+            
             UnoDeck mazo = game.getDeck();
             ArrayList<UnoCard> descarte = game.getStockpile();
 
@@ -74,10 +82,9 @@ public class logicaCPU {
                 Logger.getLogger(GameStagee.class.getName()).log(Level.SEVERE, null, ex);
             }
 
-           
             juegoCpu.setCantCartas(cpuHand.size()); // setea la label de cantidad de cartas de cpu
             juegoCpu.revalidate();
-            
+
             System.out.println("----------------");
             game.getPlayerHand(game.jugadores.get(1));
 
@@ -86,6 +93,7 @@ public class logicaCPU {
             }
             System.out.println("////////////////////");
 
+            
         }
     }
 

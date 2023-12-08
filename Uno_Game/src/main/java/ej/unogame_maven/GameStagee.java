@@ -17,12 +17,12 @@ public class GameStagee extends javax.swing.JFrame {
 
     private AddPlayersNamess addPlayers = new AddPlayersNamess();
 
-    ArrayList<String> temp = new ArrayList<>();
-    String[] pIds;
-    Game game;
-    ArrayList<JButton> cardButtons = new ArrayList<JButton>();
-    ArrayList<String> cardIds;
-    PopUpp window;
+    private ArrayList<String> temp = new ArrayList<>();
+    private String[] pIds;
+    private Game game;
+    private ArrayList<JButton> cardButtons = new ArrayList<JButton>();
+    private ArrayList<String> cardIds;
+    private PopUpp window;
 
     public GameStagee() {
     }

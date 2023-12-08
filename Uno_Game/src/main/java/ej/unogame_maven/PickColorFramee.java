@@ -241,7 +241,27 @@ public class PickColorFramee extends javax.swing.JFrame {
     }//GEN-LAST:event_cancelButtonActionPerformed
 
     private void yellowButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_yellowButton1ActionPerformed
-        // TODO add your handling code here:
+       wildColor = UnoCard.Color.Yellow;
+//        JLabel message = new JLabel("El color es verde");
+//        message.setFont(new Font("Arial", Font.BOLD, 24));
+//        JOptionPane.showMessageDialog(null, message);
+        allow = true;
+        this.dispose();
+        popUp.declaredColor = UnoCard.Color.Yellow;
+        
+        
+        if (tipoJuego) {
+            popUp.juegoCPU.setPidName(popUp.game.getJugador());
+            popUp.juegoCPU.setButtonIcons();
+            callback.colorChosen(UnoCard.Color.Yellow);
+        } else {
+            popUp.gameStage.setPidName(popUp.game.getCurrentPlayer());
+            popUp.gameStage.setButtonIcons();
+        }
+
+        popUp.topCardButton.setIcon(new javax.swing.ImageIcon("src\\main\\resources\\cards\\" + popUp.game.getTopCardImage()));
+        popUp.game.setCardColor(UnoCard.Color.Yellow);
+        popUp.dispose();
     }//GEN-LAST:event_yellowButton1ActionPerformed
 
     public static void main(String args[]) {

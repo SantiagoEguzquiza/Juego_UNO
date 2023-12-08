@@ -30,7 +30,7 @@ public class Game {
     private UnoCard.Color validColor;
     private UnoCard.Value validValue;
 
-    boolean gameDirection;
+    private boolean gameDirection;
 
     public Game(String[] pids) {
 
