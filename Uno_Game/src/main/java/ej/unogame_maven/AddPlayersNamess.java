@@ -17,7 +17,7 @@ public class AddPlayersNamess extends javax.swing.JFrame {
     }
 
     public AddPlayersNamess(boolean cpu) {
-       // this.setUndecorated(true);
+        // this.setUndecorated(true);
         initComponents();
         this.cpu = cpu;
         btnGuardar.setVisible(false); //ocultamos boton guardar xq solo hay un player vs la cpu
@@ -126,32 +126,20 @@ public class AddPlayersNamess extends javax.swing.JFrame {
 
     private void btnHechoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHechoActionPerformed
 
-        if (cpu == false) {
-            if (playerIds.size() == 1 || playerIds.size() == 0) {
-                JLabel message = new JLabel("Deben haber al menos 2 jugadores");
-                message.setFont(new Font("Arial", Font.BOLD, 24));
-                JOptionPane.showMessageDialog(null, message);
-            } else {
+        if (textFieldNombre.getText().isEmpty()) {
 
-                new GameStagee(playerIds).setVisible(true);
-                this.dispose();
-            }
+            JLabel message = new JLabel("Debe ingresar un nombre");
+            message.setFont(new Font("Arial", Font.BOLD, 24));
+            JOptionPane.showMessageDialog(null, message);
+
         } else {
+            String nombre = textFieldNombre.getText();
+            new JuegoCPU(nombre).setVisible(true);
 
-            if (textFieldNombre.getText().isEmpty()) {
-
-                JLabel message = new JLabel("Debe ingresar un nombre");
-                message.setFont(new Font("Arial", Font.BOLD, 24));
-                JOptionPane.showMessageDialog(null, message);
-
-            } else {
-                String nombre = textFieldNombre.getText();
-                new JuegoCPU(nombre).setVisible(true);
-                
-                this.dispose();
-            }
-
+            this.dispose();
         }
+
+
     }//GEN-LAST:event_btnHechoActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed

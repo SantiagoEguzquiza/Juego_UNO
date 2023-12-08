@@ -79,7 +79,7 @@ public class logicaCPU {
             try {
                 game.submitDraw(game.getCurrentPlayer());
             } catch (Game.InvalidPlayerTurnException ex) {
-                Logger.getLogger(GameStagee.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(JuegoCPU.class.getName()).log(Level.SEVERE, null, ex);
             }
 
             juegoCpu.setCantCartas(cpuHand.size()); // setea la label de cantidad de cartas de cpu

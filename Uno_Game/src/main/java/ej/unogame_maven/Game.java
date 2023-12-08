@@ -32,24 +32,7 @@ public class Game {
 
     private boolean gameDirection;
 
-    public Game(String[] pids) {
-
-        deck = new UnoDeck();
-        deck.shuffle();
-        stockpile = new ArrayList<UnoCard>();
-
-        playerIds = pids;
-        currentPlayer = 0;
-        gameDirection = false;
-
-        playerHand = new ArrayList<ArrayList<UnoCard>>();
-
-        for (int i = 0; i < pids.length; i++) {
-            ArrayList<UnoCard> hand = new ArrayList<UnoCard>(Arrays.asList(deck.drawCard(7)));
-            playerHand.add(hand);
-        }
-
-    }
+  
 
     public Game(String playerName, JuegoCPU juegoCpu, JButton topCardButton) {
 
@@ -92,44 +75,7 @@ public class Game {
     }
     //////////////////////////////////////////////////////////////////////////////////////////////
 
-    public void start(Game game) {
-
-        UnoCard card = deck.drawCard();
-        validColor = card.getColor();
-        validValue = card.getValue();
-
-        if (card.getValue() == UnoCard.Value.Wild) {
-            start(game);
-        }
-
-        if (card.getValue() == UnoCard.Value.Wild_Four || card.getValue() == UnoCard.Value.DrawTwo) {
-            start(game);
-        }
-
-        if (card.getValue() == UnoCard.Value.Skip) {
-            JLabel message = new JLabel(playerIds[currentPlayer] + " fue salteado!");
-            message.setFont(new Font("Arial", Font.BOLD, 48));
-            JOptionPane.showMessageDialog(null, message);
-
-            if (gameDirection == false) {
-                currentPlayer = (currentPlayer + 1) % playerIds.length;
-            } else if (gameDirection == true) {
-                currentPlayer = (currentPlayer - 1) % playerIds.length;
-                if (currentPlayer == -1) {
-                    currentPlayer = playerIds.length - 1;
-                }
-            }
-        }
-
-        if (card.getValue() == UnoCard.Value.Reverse) {
-            JLabel message = new JLabel(" La direccion del juego ha cambiado!");
-            message.setFont(new Font("Arial", Font.BOLD, 48));
-            JOptionPane.showMessageDialog(null, message);
-            gameDirection ^= true;
-            currentPlayer = playerIds.length - 1;
-        }
-        stockpile.add(card);
-    }
+    
 
     public void startCPU(Game game) {
 
@@ -152,6 +98,10 @@ public class Game {
             JOptionPane.showMessageDialog(null, message);
 
             cambioDeTurno(); //vuelve a cambiar de jugador para saltearse una persona
+            
+            if (this.getCurrentPlayer() == "CPU") {
+                this.instanciaCPU();
+            }
         }
 
         if (card.getValue() == UnoCard.Value.Reverse) {

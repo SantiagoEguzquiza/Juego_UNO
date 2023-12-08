@@ -4,7 +4,6 @@ import ej.unogame_maven.Game.InvalidColorSubmissionExcpetion;
 import ej.unogame_maven.Game.InvalidPlayerTurnException;
 import ej.unogame_maven.Game.InvalidValueSubmissionException;
 import java.util.ArrayList;
-import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JButton;
@@ -13,12 +12,9 @@ public class PopUpp extends javax.swing.JFrame {
 
     private String cardImage = "";
     private ArrayList<UnoCard> playerHand;
-    private ArrayList<UnoCard> cpuHand;
     private int choice;
-    private ArrayList<JButton> cardButtons;
     
     Game game;
-    GameStagee gameStage;
     JuegoCPU juegoCPU;
     JButton topCardButton;
     UnoCard.Color declaredColor;
@@ -26,18 +22,7 @@ public class PopUpp extends javax.swing.JFrame {
     public PopUpp() {
     }
 
-    public PopUpp(String cardName, Game game, int index, ArrayList<JButton> cardButtons, GameStagee gamestage, JButton topCardButton) {
-        initComponents();
-        cardImage = cardName;
-        this.game = game;
-        playerHand = game.getPlayerHand(game.getCurrentPlayer());
-        choice = index;
-        this.cardButtons = cardButtons;
-        cardLabel.setIcon(new javax.swing.ImageIcon("src\\main\\resources\\cards\\" + cardImage.toString() + ".png"));
-        this.gameStage = gamestage;
-        this.topCardButton = topCardButton;
-        useCardCPU.setVisible(false);
-    }
+   
 
     public PopUpp(String cardName, Game game, int index, ArrayList<JButton> cardButtons, JuegoCPU juegocpu, JButton topCardButton) {
         initComponents();
@@ -45,7 +30,6 @@ public class PopUpp extends javax.swing.JFrame {
         this.game = game;
         playerHand = game.getPlayerHand(game.getCurrentPlayer());
         choice = index;
-        this.cardButtons = cardButtons;
         cardLabel.setIcon(new javax.swing.ImageIcon("src\\main\\resources\\cards\\" + cardImage.toString() + ".png"));
         this.juegoCPU = juegocpu;
         this.topCardButton = topCardButton;
@@ -127,29 +111,7 @@ public class PopUpp extends javax.swing.JFrame {
     }//GEN-LAST:event_cancelButtonActionPerformed
 
     private void useCardButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_useCardButtonActionPerformed
-        boolean eleccion = false;
-        PickColorFramee pickColor = new PickColorFramee(this, eleccion);
-        declaredColor = pickColor.choseColor(playerHand.get(choice));
-
-        if (declaredColor != null) {
-            try {
-                game.submitPlayerCard(game.getCurrentPlayer(), playerHand.get(choice), declaredColor);
-            } catch (InvalidColorSubmissionExcpetion ex) {
-                Logger.getLogger(PopUpp.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (InvalidValueSubmissionException ex) {
-                Logger.getLogger(PopUpp.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (InvalidPlayerTurnException ex) {
-                Logger.getLogger(PopUpp.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            this.revalidate();
-            if (declaredColor != UnoCard.Color.Wild) {
-                gameStage.setPidName(game.getCurrentPlayer());
-                gameStage.setButtonIcons();
-                topCardButton.setIcon(new javax.swing.ImageIcon("src\\main\\resources\\cards\\" + game.getTopCardImage()));
-                this.setVisible(false);
-            }
-        }
-        
+  
        
     }//GEN-LAST:event_useCardButtonActionPerformed
 

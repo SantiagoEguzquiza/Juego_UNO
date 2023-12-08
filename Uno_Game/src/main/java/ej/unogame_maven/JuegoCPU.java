@@ -542,7 +542,7 @@ public class JuegoCPU extends javax.swing.JFrame {
         try {
             game.submitDraw(game.getCurrentPlayer());
         } catch (InvalidPlayerTurnException ex) {
-            Logger.getLogger(GameStagee.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(JuegoCPU.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         //==============================================================================================

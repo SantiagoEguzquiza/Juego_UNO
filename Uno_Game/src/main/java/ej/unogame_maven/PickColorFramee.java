@@ -144,9 +144,9 @@ public class PickColorFramee extends javax.swing.JFrame {
                         .addGap(95, 95, 95)
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(179, 179, 179)
+                        .addGap(176, 176, 176)
                         .addComponent(cancelButton)))
-                .addGap(40, 40, 40))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -155,9 +155,9 @@ public class PickColorFramee extends javax.swing.JFrame {
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(100, 100, 100)
                 .addComponent(cancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(119, Short.MAX_VALUE))
+                .addContainerGap(37, Short.MAX_VALUE))
         );
 
         pack();
@@ -177,9 +177,6 @@ public class PickColorFramee extends javax.swing.JFrame {
             popUp.juegoCPU.setPidName(popUp.game.getJugador());
             popUp.juegoCPU.setButtonIcons();
             callback.colorChosen(UnoCard.Color.Red);
-        } else {
-            popUp.gameStage.setPidName(popUp.game.getCurrentPlayer());
-            popUp.gameStage.setButtonIcons();
         }
 
         popUp.topCardButton.setIcon(new javax.swing.ImageIcon("src\\main\\resources\\cards\\" + popUp.game.getTopCardImage()));
@@ -202,9 +199,6 @@ public class PickColorFramee extends javax.swing.JFrame {
             popUp.juegoCPU.setPidName(popUp.game.getJugador());
             popUp.juegoCPU.setButtonIcons();
             callback.colorChosen(UnoCard.Color.Blue);
-        } else {
-            popUp.gameStage.setPidName(popUp.game.getCurrentPlayer());
-            popUp.gameStage.setButtonIcons();
         }
 
         popUp.topCardButton.setIcon(new javax.swing.ImageIcon("src\\main\\resources\\cards\\" + popUp.game.getTopCardImage()));
@@ -226,9 +220,6 @@ public class PickColorFramee extends javax.swing.JFrame {
             popUp.juegoCPU.setPidName(popUp.game.getJugador());
             popUp.juegoCPU.setButtonIcons();
             callback.colorChosen(UnoCard.Color.Green);
-        } else {
-            popUp.gameStage.setPidName(popUp.game.getCurrentPlayer());
-            popUp.gameStage.setButtonIcons();
         }
 
         popUp.topCardButton.setIcon(new javax.swing.ImageIcon("src\\main\\resources\\cards\\" + popUp.game.getTopCardImage()));
@@ -254,9 +245,6 @@ public class PickColorFramee extends javax.swing.JFrame {
             popUp.juegoCPU.setPidName(popUp.game.getJugador());
             popUp.juegoCPU.setButtonIcons();
             callback.colorChosen(UnoCard.Color.Yellow);
-        } else {
-            popUp.gameStage.setPidName(popUp.game.getCurrentPlayer());
-            popUp.gameStage.setButtonIcons();
         }
 
         popUp.topCardButton.setIcon(new javax.swing.ImageIcon("src\\main\\resources\\cards\\" + popUp.game.getTopCardImage()));
