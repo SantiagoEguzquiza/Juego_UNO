@@ -32,8 +32,6 @@ public class Game {
 
     private boolean gameDirection;
 
-  
-
     public Game(String playerName, JuegoCPU juegoCpu, JButton topCardButton) {
 
         this.juegoCpu = juegoCpu;
@@ -75,8 +73,6 @@ public class Game {
     }
     //////////////////////////////////////////////////////////////////////////////////////////////
 
-    
-
     public void startCPU(Game game) {
 
         UnoCard card = deck.drawCard();
@@ -98,7 +94,7 @@ public class Game {
             JOptionPane.showMessageDialog(null, message);
 
             cambioDeTurno(); //vuelve a cambiar de jugador para saltearse una persona
-            
+
             if (this.getCurrentPlayer() == "CPU") {
                 this.instanciaCPU();
             }
@@ -292,11 +288,6 @@ public class Game {
     public void submitCpuCard(String pId, UnoCard card, UnoCard.Color declaredColor)
             throws InvalidColorSubmissionExcpetion, InvalidValueSubmissionException, InvalidPlayerTurnException {
         {
-            System.out.println("");
-            System.out.println("*********************");
-            System.out.println("Game.submitCpuCard()");
-            System.out.println("entra con color " + declaredColor);
-            System.out.println("");
 
             checkPlayerTurn(pId);
 
@@ -412,7 +403,10 @@ public class Game {
                     }
                 }
 
-                this.instanciaCPU();
+                if (this.getCurrentPlayer() == "CPU") {
+
+                    this.instanciaCPU();
+                }
 
             }
             if (card.getValue() == UnoCard.Value.Reverse) {
@@ -443,10 +437,8 @@ public class Game {
                     currentPlayer = (currentPlayer + 2) % playerIds.length;
                 }
 
-                
                 juegoCpu.setTopCardButtonIcon();
-                
-                
+
                 juegoCpu.revalidate();
 
                 if (this.getCurrentPlayer() == "CPU") {
@@ -454,12 +446,10 @@ public class Game {
                     this.instanciaCPU();
                 }
             }
-            
+
             if (this.getCurrentPlayer() != "CPU") {
-                  juegoCpu.habilitadorDeButtons(true);  
-                }
-            
-            
+                juegoCpu.habilitadorDeButtons(true);
+            }
         }
     }
 
@@ -469,6 +459,7 @@ public class Game {
         //dependiendo de la dirección del juego (gameDirection). \
         //Si gameDirection es false, avanza al siguiente jugador.
         //Si es true, retrocede al jugador anterior, asegurándose de manejar correctamente los límites del arreglo circular de jugadores.
+        
         if (gameDirection == false) {
             currentPlayer = (currentPlayer + 1) % playerIds.length;
         } else if (gameDirection == true) {

@@ -30,10 +30,10 @@ public class JuegoCPU extends javax.swing.JFrame {
     }
 
     public JuegoCPU(String playerName) {
-        //this.setUndecorated(true);
-
+  
         initComponents();
         setExtendedState(JFrame.MAXIMIZED_BOTH);
+        
         this.playerName = playerName;
         game = new Game(playerName, this, topCardButton);
         
@@ -46,7 +46,7 @@ public class JuegoCPU extends javax.swing.JFrame {
         
         topCardButton.setIcon(new javax.swing.ImageIcon("src\\main\\resources\\cards\\" + game.getTopCardImage()));
         
-
+        //Imagen de las cartas de la cpu
         String path = "src\\main\\resources\\cards\\cartasJugador.drawio.png";
         ImageIcon ic = new ImageIcon(path);
         Image nw = ic.getImage().getScaledInstance(lblCartasJugador.getHeight(), lblCartasJugador.getWidth(), Image.SCALE_AREA_AVERAGING);

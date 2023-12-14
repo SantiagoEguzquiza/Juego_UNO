@@ -84,7 +84,9 @@ public class logicaCPU {
 
             juegoCpu.setCantCartas(cpuHand.size()); // setea la label de cantidad de cartas de cpu
             juegoCpu.revalidate();
-
+            
+            
+            //se usa para controlar por consola las cartas de la cpu//
             System.out.println("----------------");
             game.getPlayerHand(game.jugadores.get(1));
 
@@ -92,6 +94,7 @@ public class logicaCPU {
                 System.out.println(unoCard);
             }
             System.out.println("////////////////////");
+            ///////////////////////////////////////////////////////////
 
             
         }
